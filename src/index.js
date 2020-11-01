@@ -1,13 +1,11 @@
 const express = require("express");
-
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("hellotttte test");
-});
+app.set("views", "./views");
+app.set("view engine", "html");
 
-app.get("/qwe", (req, res) => {
-  res.send("qweqweqwe");
+app.get("/", (req, res) => {
+  res.render("index");
 });
 
 app.listen(8080);
