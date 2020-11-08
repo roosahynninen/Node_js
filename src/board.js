@@ -1,20 +1,18 @@
-import "./styles.css";
-
-document.getElementById("board").innerHTML = ``;
-
 var count = 0;
+var table = document.createElement("table");
 
+//the reference for the body
 var board = document.getElementById("board");
 
 function createTable() {
-  var table = document.createElement("table");
-
+  // create rows
   for (var r = 0; r < 5; r++) {
-    var table_row = table.insertRow();
+    var t_row = table.insertRow();
+    // create cells in row
     for (var c = 0; c < 5; c++) {
-      var table_cell = table_row.insertCell();
-      var cell_text = document.createTextNode("");
-      table_cell.appendChild(cell_text);
+      var t_cell = t_row.insertCell();
+      var cellText = document.createTextNode("");
+      t_cell.appendChild(cellText);
     }
   }
   board.appendChild(table);
@@ -22,29 +20,29 @@ function createTable() {
 }
 
 function onClick(table) {
-  for (var tab = 0; tab < table.rows.length; tab++) {
-    for (var i = 0; i < table.rows[tab].cells.length; i++) {
-      table.rows[tab].cells[i].onclick = function () {
+  for (var t = 0; t < table.rows.length; t++) {
+    for (var i = 0; i < table.rows[t].cells.length; i++) {
+      table.rows[t].cells[i].onclick = function () {
         fillCell(table, this);
       };
     }
   }
 }
 
-function fillCell(table, table_cell) {
+function fillCell(table, t_cell) {
   count++;
   if (count % 2 === 0) {
-    if (table_cell.innerHTML === "") {
-      table_cell.innerHTML = "o";
+    if (t_cell.innerHTML === "") {
+      t_cell.innerHTML = "O";
     } else {
-      alert("This cell is already taken");
+      alert("That cell is already chosen");
       count--;
     }
   } else {
-    if (table_cell.innerHTML === "") {
-      table_cell.innerHTML = "x";
+    if (t_cell.innerHTML === "") {
+      t_cell.innerHTML = "X";
     } else {
-      alert("This cell is already taken");
+      alert("That cell is already chosen");
       count--;
     }
   }
@@ -53,81 +51,81 @@ function fillCell(table, table_cell) {
 }
 
 function checkWin(table) {
-  var mark = ["x", "o"];
+  var xo = ["X", "O"];
 
   for (var i = 0; i < 2; i++) {
-    var lin1 = 0;
-    var lin2 = 0;
-    var lin3 = 0;
-    var lin4 = 0;
-    var lin5 = 0;
-    var hor1 = 0;
-    var hor2 = 0;
-    var hor3 = 0;
-    var hor4 = 0;
-    var hor5 = 0;
-    var dia1 = 0;
-    var dia2 = 0;
+    var pysty1 = 0;
+    var pysty2 = 0;
+    var pysty3 = 0;
+    var pysty4 = 0;
+    var pysty5 = 0;
+    var vaaka1 = 0;
+    var vaaka2 = 0;
+    var vaaka3 = 0;
+    var vaaka4 = 0;
+    var vaaka5 = 0;
+    var viisto1 = 0;
+    var viisto2 = 0;
 
-    for (var tab = 0; tab < 5; tab++) {
-      if (table.rows[tab].cells[0].innerHTML === mark[i]) {
-        lin1++;
+    for (var t = 0; t < 5; t++) {
+      if (table.rows[0].cells[t].innerHTML === xo[i]) {
+        vaaka1++;
       }
-      if (table.rows[tab].cells[1].innerHTML === mark[i]) {
-        lin2++;
+      if (table.rows[1].cells[t].innerHTML === xo[i]) {
+        vaaka2++;
       }
-      if (table.rows[tab].cells[2].innerHTML === mark[i]) {
-        lin3++;
+      if (table.rows[2].cells[t].innerHTML === xo[i]) {
+        vaaka3++;
       }
-      if (table.rows[tab].cells[3].innerHTML === mark[i]) {
-        lin4++;
+      if (table.rows[3].cells[t].innerHTML === xo[i]) {
+        vaaka4++;
       }
-      if (table.rows[tab].cells[4].innerHTML === mark[i]) {
-        lin5++;
+      if (table.rows[4].cells[t].innerHTML === xo[i]) {
+        vaaka5++;
       }
-      if (table.rows[0].cells[tab].innerHTML === mark[i]) {
-        hor1++;
+      if (table.rows[t].cells[0].innerHTML === xo[i]) {
+        pysty1++;
       }
-      if (table.rows[1].cells[tab].innerHTML === mark[i]) {
-        hor2++;
+      if (table.rows[t].cells[1].innerHTML === xo[i]) {
+        pysty2++;
       }
-      if (table.rows[2].cells[tab].innerHTML === mark[i]) {
-        hor3++;
+      if (table.rows[t].cells[2].innerHTML === xo[i]) {
+        pysty3++;
       }
-      if (table.rows[3].cells[tab].innerHTML === mark[i]) {
-        hor4++;
+      if (table.rows[t].cells[3].innerHTML === xo[i]) {
+        pysty4++;
       }
-      if (table.rows[4].cells[tab].innerHTML === mark[i]) {
-        hor5++;
+      if (table.rows[t].cells[4].innerHTML === xo[i]) {
+        pysty5++;
       }
-      if (table.rows[tab].cells[tab].innerHTML === mark[i]) {
-        dia1++;
+      if (table.rows[t].cells[t].innerHTML === xo[i]) {
+        viisto1++;
       }
-      var reverse = 4 - tab;
-      if (table.rows[tab].cells[reverse].innerHTML === mark[i]) {
-        dia2++;
+      var reverse = 4 - t;
+      if (table.rows[t].cells[reverse].innerHTML === xo[i]) {
+        viisto2++;
       }
       if (
-        lin1 === 5 ||
-        lin2 === 5 ||
-        lin3 === 5 ||
-        lin4 === 5 ||
-        lin5 === 5 ||
-        hor1 === 5 ||
-        hor2 === 5 ||
-        hor3 === 5 ||
-        hor4 === 5 ||
-        hor5 === 5 ||
-        dia1 === 5 ||
-        dia2 === 5
+        pysty1 === 5 ||
+        pysty2 === 5 ||
+        pysty3 === 5 ||
+        pysty4 === 5 ||
+        pysty5 === 5 ||
+        vaaka1 === 5 ||
+        vaaka2 === 5 ||
+        vaaka3 === 5 ||
+        vaaka4 === 5 ||
+        vaaka5 === 5 ||
+        viisto1 === 5 ||
+        viisto2 === 5
       ) {
-        if (mark[i] === "x") {
+        if (xo[i] === "X") {
           alert("Player 1 won!");
         }
-        if (mark[i] === "o") {
+        if (xo[i] === "O") {
           alert("Player 2 won!");
         }
-        clearTable(table);
+        clearTable();
       }
     }
   }
@@ -136,11 +134,11 @@ function checkWin(table) {
 function checkDraw(table) {
   var draw_count = 0;
 
-  for (var tab = 0; tab < table.rows.length; tab++) {
-    for (var i = 0; i < table.rows[tab].cells.length; i++) {
+  for (var t = 0; t < table.rows.length; t++) {
+    for (var i = 0; i < table.rows[t].cells.length; i++) {
       if (
-        table.rows[tab].cells[i].innerHTML === "x" ||
-        table.rows[tab].cells[i].innerHTML === "o"
+        table.rows[t].cells[i].innerHTML === "X" ||
+        table.rows[t].cells[i].innerHTML === "O"
       ) {
         draw_count++;
       }
@@ -148,14 +146,14 @@ function checkDraw(table) {
   }
   if (draw_count === 25) {
     alert("It's a draw!");
-    clearTable(table);
+    clearTable();
   }
 }
 
-function clearTable(table) {
-  for (var tab = 0; tab < table.rows.length; tab++) {
-    for (var i = 0; i < table.rows[tab].cells.length; i++) {
-      table.rows[tab].cells[i].innerHTML = "";
+function clearTable() {
+  for (var t = 0; t < table.rows.length; t++) {
+    for (var i = 0; i < table.rows[t].cells.length; i++) {
+      table.rows[t].cells[i].innerHTML = "";
     }
   }
 }
